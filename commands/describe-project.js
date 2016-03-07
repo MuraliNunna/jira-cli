@@ -2,8 +2,8 @@ var jira = require('../jira')
 
 module.exports = function (vorpal) {
   vorpal
-    .command('get project <project key>')
-    .description('Get a project by project key.')
+    .command('describe project <project key>')
+    .description('Describe a project by project key.')
     .action(function (args, callback) {
       var projectKey = args['project key']
       var jiraConnection = jira(vorpal)

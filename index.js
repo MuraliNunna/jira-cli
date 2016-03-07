@@ -10,7 +10,7 @@ const runSingleCommand = process.argv.length > 2
 
 require('./commands/comment')(vorpal)
 require('./commands/configure')(vorpal)
-require('./commands/get-project')(vorpal)
+require('./commands/describe-project')(vorpal)
 // require('./commands/find-rapid-view')(vorpal)
 require('./commands/list-projects')(vorpal)
 require('./commands/mine')(vorpal)
