@@ -19,13 +19,23 @@ module.exports = function (vorpal) {
         // console.log(JSON.stringify(response.issues[0],null,2))
         this.log(table(response.issues.map((issue)=> {
           // console.log(JSON.stringify(issue,null,2))
-          var key = issue.key
+          var key = issue.key.blue
           if (issue.fields.status.description.includes('Task')) {
             key = `${key} (task)`
           }
+
+          status = ''
+          if (issue.fields.status.name === 'Open') {
+            status = issue.fields.status.name.green
+          } else if (issue.fields.status.name === 'In Progress') {
+            status = issue.fields.status.name.yellow
+          } else {
+            status = issue.fields.status.name
+          }
+
           return [
             key,
-            issue.fields.status.name,
+            status,
             issue.fields.summary
           ]
         }), borderlessTableConfig))
@@ -39,7 +49,7 @@ module.exports = function (vorpal) {
 var borderlessTableConfig = {
   border: getBorderCharacters('void'),
   columns: {
-    0: { width: 16, paddingLeft: 2 },
+    0: { width: 16, paddingLeft: 0 },
     1: { width: 16, paddingLeft: 2 },
     2: { width: 100, wrapWord: true }
   },
