@@ -8,6 +8,7 @@ require('./commands/configure')(vorpal)
 require('./commands/projects')(vorpal)
 require('./commands/use')(vorpal)
 require('./commands/mine')(vorpal)
+require('./commands/show')(vorpal)
 
 if (!vorpal.localStorage.getItem('username') || !vorpal.localStorage.getItem('password')) {
   vorpal.exec('configure')

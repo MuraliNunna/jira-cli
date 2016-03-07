@@ -4,11 +4,11 @@ var getBorderCharacters = require('table').getBorderCharacters
 
 module.exports = function (vorpal) {
   vorpal
-    .command('use <projectKey>')
+    .command('use <project key>')
     .description('Use a project')
     .action(function (args, callback) {
-      console.log(`Using ${args.projectKey}`.blue)
-      vorpal.localStorage.setItem('projectKey', args.projectKey)
+      console.log(`Using ${args['project key']}`.blue)
+      vorpal.localStorage.setItem('projectKey', args['project key'])
       callback()
     })
 

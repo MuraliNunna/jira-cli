@@ -1,5 +1,6 @@
-var jira = require('../jira')
 var table = require('table').default
+var jira = require('../jira')
+var recentIssues = require('../state/recent-issues')
 var getBorderCharacters = require('table').getBorderCharacters
 
 module.exports = function (vorpal) {
@@ -39,6 +40,9 @@ module.exports = function (vorpal) {
             issue.fields.summary
           ]
         }), borderlessTableConfig))
+        recentIssues.replace(response.issues.map(function (issue) {
+          return issue.key
+        }))
         callback()
       })
     })
