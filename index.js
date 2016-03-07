@@ -19,6 +19,8 @@ require('./commands/show')(vorpal)
 require('./commands/sprint')(vorpal)
 require('./commands/use')(vorpal)
 
+vorpal.parse(process.argv)
+
 if (vorpal.localStorage.getItem('showProductivityQuote')) {
   vorpal.log(getRandomProductivityQuote().yellow)
 }
