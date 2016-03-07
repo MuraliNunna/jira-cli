@@ -1,6 +1,6 @@
 var recentIssues = []
 
-exports.replace = function (issues) {
+exports.set = function (issues) {
   recentIssues = issues
 }
 

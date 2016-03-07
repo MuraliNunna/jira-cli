@@ -1,7 +1,7 @@
 module.exports = function (vorpal) {
   vorpal
     .command('configure')
-    .description('User, pass, host, etc.')
+    .description('Set username, password, host, etc.')
     .action(function (args, callback) {
       const self = this
       this.prompt([

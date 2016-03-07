@@ -1,12 +1,12 @@
 var table = require('table').default
 var jira = require('../jira')
-var recentIssues = require('../state/recent-issues')
+var recentIssues = require('../state/issues')
 var getBorderCharacters = require('table').getBorderCharacters
 
 module.exports = function (vorpal) {
   vorpal
     .command('mine')
-    .description('Show my issues')
+    .description('List my issues.')
     .action(function (args, callback) {
       var username = vorpal.localStorage.getItem('username')
       var openOnly = true
@@ -40,7 +40,7 @@ module.exports = function (vorpal) {
             issue.fields.summary
           ]
         }), borderlessTableConfig))
-        recentIssues.replace(response.issues.map(function (issue) {
+        recentIssues.set(response.issues.map(function (issue) {
           return issue.key
         }))
         callback()

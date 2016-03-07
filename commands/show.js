@@ -1,11 +1,11 @@
 var jira = require('../jira')
 var table = require('table').default
-var recentIssues = require('../state/recent-issues')
+var recentIssues = require('../state/issues')
 
 module.exports = function (vorpal) {
   vorpal
     .command('show <issue key>')
-    .description('Show an issue')
+    .description('Show an issue.')
     .autocomplete({
       data: function () {
         return recentIssues.get()
