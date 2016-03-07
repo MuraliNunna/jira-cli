@@ -4,7 +4,7 @@ var recentIssues = require('../state/issues')
 
 module.exports = function (vorpal) {
   vorpal
-    .command('comment <issue key> <comment>')
+    .command('comment <issue key> <comment...>')
     .description('Comment on an issue.')
     .autocomplete({
       data: function () {
@@ -17,7 +17,7 @@ module.exports = function (vorpal) {
       if (issueKey.indexOf('-') === -1) {
         issueKey = `${vorpal.localStorage.getItem('projectKey')}-${issueKey}`
       }
-      jiraConnection.addComment(issueKey, args['comment'], (err, success) => {
+      jiraConnection.addComment(issueKey, args['comment'].join(' '), (err, success) => {
         if (err) {
           callback(err)
           return
