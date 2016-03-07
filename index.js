@@ -6,6 +6,8 @@ const vorpal = require('vorpal')()
 
 require('./commands/configure')(vorpal)
 require('./commands/projects')(vorpal)
+require('./commands/use')(vorpal)
+require('./commands/mine')(vorpal)
 
 if (!vorpal.localStorage.getItem('username') || !vorpal.localStorage.getItem('password')) {
   vorpal.exec('configure')

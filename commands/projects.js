@@ -1,6 +1,5 @@
 var jira = require('../jira')
-var table = require('table').default
-var getBorderCharacters = require('table').getBorderCharacters
+var columns = require('cli-columns')
 
 module.exports = function (vorpal) {
   vorpal
@@ -13,22 +12,12 @@ module.exports = function (vorpal) {
           callback(err)
           return
         }
-        this.log(table(projects.map((project)=> {
-          return [
-            project.key,
-            project.name
-          ]
-        }), borderlessTableConfig))
+        this.log(columns(projects.map((project)=> {
+          return `${project.name} (${project.key.blue})`
+        })))
         callback()
       })
     })
 
   vorpal.show()
-}
-
-var borderlessTableConfig = {
-  border: getBorderCharacters('void'),
-  drawHorizontalLine: function () {
-    return false
-  }
 }

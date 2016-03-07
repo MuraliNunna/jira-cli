@@ -49,7 +49,7 @@ module.exports = function (vorpal) {
         vorpal.localStorage.setItem('protocol', input.protocol)
         vorpal.localStorage.setItem('host', input.host)
         vorpal.localStorage.setItem('port', input.port)
-        vorpal.localStorage.setItem('project', input.project)
+        vorpal.localStorage.setItem('projectKey', input.project)
         vorpal.localStorage.setItem('issuetype', input.issuetype)
         vorpal.localStorage.setItem('username', input.username)
         vorpal.localStorage.setItem('password', input.password)
