@@ -32,7 +32,11 @@ module.exports = function (vorpal) {
           } else if (issue.fields.status.name === 'In Progress') {
             status = issue.fields.status.name.yellow
           } else if (issue.fields.status.name === 'Closed') {
-            status = issue.fields.status.name.grey
+            status = issue.fields.status.name.dim
+          } else if (issue.fields.status.name === 'QA') {
+            status = issue.fields.status.name.cyan
+          } else if (issue.fields.status.name === 'Feedback') {
+            status = issue.fields.status.name.magenta
           } else {
             status = issue.fields.status.name
           }
