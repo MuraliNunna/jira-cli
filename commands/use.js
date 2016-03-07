@@ -17,8 +17,6 @@ module.exports = function (vorpal) {
       vorpal.localStorage.setItem('projectKey', args['project key'])
       callback()
     })
-
-  vorpal.show()
 }
 
 var borderlessTableConfig = {

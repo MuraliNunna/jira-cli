@@ -17,6 +17,4 @@ module.exports = function (vorpal) {
         callback()
       })
     })
-
-  vorpal.show()
 }
