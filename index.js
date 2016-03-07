@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 require('colors')
 var getRandomProductivityQuote = require('./state/productivity-quotes')
 
