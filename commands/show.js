@@ -36,7 +36,7 @@ module.exports = function (vorpal) {
           Status: issue.fields.status.name,
           Creator: issue.fields.creator.displayName,
           Assignee: issue.fields.assignee.displayName,
-          Subtasks: issue.fields.subtasks && subtasks
+          Subtasks: issue.fields.subtasks && issue.fields.subtasks.length && subtasks
         }
 
         this.log(yaml.dump(pruneEmptyValues(output)))
