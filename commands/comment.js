@@ -13,7 +13,11 @@ module.exports = function (vorpal) {
     })
     .action(function (args, callback) {
       var jiraConnection = jira(vorpal)
-      jiraConnection.addComment(args['issue key'], args['comment'], (err, success) => {
+      var issueKey = String(args['issue key'])
+      if (issueKey.indexOf('-') === -1) {
+        issueKey = `${vorpal.localStorage.getItem('projectKey')}-${issueKey}`
+      }
+      jiraConnection.addComment(issueKey, args['comment'], (err, success) => {
         if (err) {
           callback(err)
           return
