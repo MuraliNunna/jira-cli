@@ -1,6 +1,5 @@
 var jira = require('../jira')
 var table = require('table').default
-var recentIssues = require('../state/issues')
 
 module.exports = function (vorpal) {
   vorpal
@@ -8,7 +7,7 @@ module.exports = function (vorpal) {
     .description('Show an issue.')
     .autocomplete({
       data: function () {
-        return recentIssues.get()
+        return vorpal.localStorage.getItem('recentIssues').split(',') || []
       }
     })
     .action(function (args, callback) {

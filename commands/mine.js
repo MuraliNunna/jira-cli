@@ -33,7 +33,7 @@ module.exports = function (vorpal) {
             issue.fields.summary
           ]
         }), borderlessTableConfig))
-        recentIssues.set(response.issues.map(function (issue) {
+        recentIssues.set(vorpal, response.issues.map(function (issue) {
           return issue.key
         }))
         callback()

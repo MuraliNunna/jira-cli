@@ -1,6 +1,5 @@
 var table = require('table').default
 var jira = require('../jira')
-var recentIssues = require('../state/issues')
 var colorStatus = require('../common/color-status')
 var getBorderCharacters = require('table').getBorderCharacters
 

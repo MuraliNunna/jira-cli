@@ -1,12 +1,7 @@
-var recentIssues = []
-
-exports.set = function (issues) {
+exports.set = function (vorpal, issues) {
   recentIssues = issues.concat(issues.map((issue) => {
     var parts = issue.split('-')
     return parts[parts.length - 1]
   }))
-}
-
-exports.get = function () {
-  return recentIssues
+  vorpal.localStorage.setItem('recentIssues', recentIssues)
 }
