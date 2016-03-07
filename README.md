@@ -1,6 +1,6 @@
-# Take the jeer out of Jira
+# Take the jeer out of JIRA
 
-An immersive command line interface (CLI) for Jira
+An immersive command line interface (CLI) for JIRA
 
 ## Install
 
