@@ -6,36 +6,29 @@ var getBorderCharacters = require('table').getBorderCharacters
 
 module.exports = function (vorpal) {
   vorpal
-    .command('mine')
-    .description('List my issues.')
+    .command('search <query...>')
+    .description('Search with query string (jql).')
     .action(function (args, callback) {
-      var username = vorpal.localStorage.getItem('username')
-      var openOnly = false
-
+      const searchString = args['query'].join(' ')
       var jiraConnection = jira(vorpal)
-      jiraConnection.getUsersIssues(username, openOnly, (err, response) => {
+      jiraConnection.searchJira(searchString, {}, (err, response) => {
         if (err) {
-          callback(err)
+          callback('err',   err)
           return
         }
+
         response.issues.reverse()
-        this.log(table(response.issues.map((issue)=> {
+
+        this.log(table(response.issues.map((issue) => {
           var key = issue.key.blue
-          if (issue.fields.status.description.includes('Task')) {
-            key = `${key} (task)`
-          }
-
           status = colorStatus(issue.fields.status.name)
-
           return [
             key,
+            issue.fields.assignee ? issue.fields.assignee.displayName : '',
             status,
             issue.fields.summary
           ]
         }), borderlessTableConfig))
-        recentIssues.set(response.issues.map(function (issue) {
-          return issue.key
-        }))
         callback()
       })
     })
@@ -46,9 +39,10 @@ module.exports = function (vorpal) {
 var borderlessTableConfig = {
   border: getBorderCharacters('void'),
   columns: {
-    0: { width: 16, paddingLeft: 0 },
-    1: { width: 16, paddingLeft: 2 },
-    2: { width: 100, wrapWord: true }
+    0: { width: 10, paddingLeft: 0 },
+    1: { width: 20, paddingLeft: 2 },
+    2: { width: 12, paddingLeft: 2 },
+    3: { width: 100, wrapWord: true }
   },
   drawHorizontalLine: function () {
     return false
