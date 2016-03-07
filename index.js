@@ -6,13 +6,16 @@ const vorpal = require('vorpal')()
   .history('jira')
   .localStorage('jira')
 
+require('./commands/comment')(vorpal)
 require('./commands/configure')(vorpal)
-require('./commands/projects')(vorpal)
-require('./commands/use')(vorpal)
 require('./commands/mine')(vorpal)
+require('./commands/projects')(vorpal)
 require('./commands/show')(vorpal)
+require('./commands/use')(vorpal)
 
-vorpal.log(getRandomProductivityQuote().yellow)
+if (vorpal.localStorage.getItem('showProductivityQuote')) {
+  vorpal.log(getRandomProductivityQuote().yellow)
+}
 
 if (!vorpal.localStorage.getItem('username') || !vorpal.localStorage.getItem('password')) {
   vorpal.exec('configure')

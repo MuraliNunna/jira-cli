@@ -9,7 +9,7 @@ module.exports = function (vorpal) {
     .description('List my issues.')
     .action(function (args, callback) {
       var username = vorpal.localStorage.getItem('username')
-      var openOnly = true
+      var openOnly = false
 
       var jiraConnection = jira(vorpal)
       jiraConnection.getUsersIssues(username, openOnly, (err, response) => {
@@ -18,6 +18,7 @@ module.exports = function (vorpal) {
           return
         }
         // console.log(JSON.stringify(response.issues[0],null,2))
+        response.issues.reverse()
         this.log(table(response.issues.map((issue)=> {
           // console.log(JSON.stringify(issue,null,2))
           var key = issue.key.blue
@@ -30,6 +31,8 @@ module.exports = function (vorpal) {
             status = issue.fields.status.name.green
           } else if (issue.fields.status.name === 'In Progress') {
             status = issue.fields.status.name.yellow
+          } else if (issue.fields.status.name === 'Closed') {
+            status = issue.fields.status.name.grey
           } else {
             status = issue.fields.status.name
           }
