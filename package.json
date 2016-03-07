@@ -1,7 +1,7 @@
 {
-  "name": "jira-repl",
+  "name": "aaronshaf-jira-repl",
   "version": "1.0.0",
-  "description": "REPL for Jira",
+  "description": "Immersive command line interface for Jira",
   "main": "index.js",
   "dependencies": {
     "cli-columns": "^1.0.6",
