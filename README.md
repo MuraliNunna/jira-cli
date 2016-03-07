@@ -1,6 +1,6 @@
-# aaronshaf-jira-cli
+# Take the jeer out of Jira
 
-Immersive command line interface (CLI) for Jira
+An immersive command line interface (CLI) for Jira
 
 ## Install
 
