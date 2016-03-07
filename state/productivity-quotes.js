@@ -7,5 +7,5 @@ var quotes = [
 ]
 
 module.exports = function getRandomProductivityQuote () {
-  return quotes[random(0, quotes.length)]
+  return quotes[random(0, quotes.length - 1)]
 }
