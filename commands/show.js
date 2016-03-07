@@ -31,7 +31,7 @@ module.exports = function (vorpal) {
           Parent: issue.fields.parent && `${issue.fields.parent.key} - ${issue.fields.parent.fields.summary}`,
           Summary: issue.fields.summary,
           Type: issue.fields.issuetype.name,
-          Description: issue.fields.description.replace(/[\n\r\t]/g,' '),
+          Description: issue.fields.description && issue.fields.description.replace(/[\n\r\t]/g,' '),
           Summary: issue.fields.summary,
           Status: issue.fields.status.name,
           Creator: issue.fields.creator.displayName,
