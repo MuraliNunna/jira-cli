@@ -10,6 +10,8 @@ npm install aaronshaf-jira-cli -g
 
 ## Commands
 
+Supports autocomplete.
+
 ```
 jira
 
