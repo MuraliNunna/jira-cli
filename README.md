@@ -1,11 +1,11 @@
-# jira-repl
+# aaronshaf-jira-cli
 
 Immersive command line interface (CLI) for Jira
 
 ## Install
 
 ```
-npm install aaronshaf-jira-repl -g
+npm install aaronshaf-jira-cli -g
 ```
 
 ## Commands

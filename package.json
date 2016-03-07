@@ -1,5 +1,5 @@
 {
-  "name": "aaronshaf-jira-repl",
+  "name": "aaronshaf-jira-cli",
   "version": "1.0.0",
   "description": "Immersive command line interface for Jira",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aaronshaf/jira-repl.git"
+    "url": "git+https://github.com/aaronshaf/jira-cli.git"
   },
   "keywords": [
     "jira"
@@ -21,10 +21,10 @@
   "author": "Aaron Shafovaloff <aaronshaf@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aaronshaf/jira-repl/issues"
+    "url": "https://github.com/aaronshaf/jira-cli/issues"
   },
   "bin": {
     "jira": "index.js"
   },
-  "homepage": "https://github.com/aaronshaf/jira-repl#readme"
+  "homepage": "https://github.com/aaronshaf/jira-cli#readme"
 }
