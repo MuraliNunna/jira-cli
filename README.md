@@ -10,8 +10,6 @@ npm install aaronshaf-jira-cli -g
 
 ## Commands
 
-Supports autocomplete.
-
 ```
 jira
 
@@ -26,6 +24,8 @@ jira
   show <issue key>                    Show an issue.
   use <project key>                   Use a project.
 ```
+
+Supports autocomplete.
 
 ## See also
 
