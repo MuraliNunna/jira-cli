@@ -1,12 +1,14 @@
 #! /usr/bin/env node
 
 require('colors')
-var getRandomProductivityQuote = require('./state/productivity-quotes')
 
 const vorpal = require('vorpal')()
   .localStorage('jira')
+  .delimiter(`${'jira'.blue}$`)
+  .history('jira')
 
 const runSingleCommand = process.argv.length > 2
+const credentialsSet = vorpal.localStorage.getItem('username') && vorpal.localStorage.getItem('password')
 
 require('./commands/comment')(vorpal)
 require('./commands/configure')(vorpal)
@@ -19,18 +21,12 @@ require('./commands/show')(vorpal)
 // require('./commands/sprint')(vorpal)
 require('./commands/use')(vorpal)
 
-if (!vorpal.localStorage.getItem('username') || !vorpal.localStorage.getItem('password')) {
-  vorpal.exec('configure')
+vorpal.show()
+
+if (!credentialsSet) {
+  vorpal.execSync('configure')
 }
 
 if (runSingleCommand) {
   vorpal.parse(process.argv)
-} else {
-  vorpal
-    .delimiter(`${'jira'.blue}$`)
-    .history('jira')
-  if (vorpal.localStorage.getItem('showProductivityQuote')) {
-    vorpal.log(getRandomProductivityQuote().yellow)
-  }
-  vorpal.show()
 }

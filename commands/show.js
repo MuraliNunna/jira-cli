@@ -1,5 +1,7 @@
 var jira = require('../jira')
 var table = require('table').default
+var yaml = require('js-yaml')
+var transform = require('lodash/transform')
 
 module.exports = function (vorpal) {
   vorpal
@@ -21,30 +23,25 @@ module.exports = function (vorpal) {
           callback(err)
           return
         }
-        // console.log(JSON.stringify(issue,null,2))
+        var subtasks = transform(issue.fields.subtasks || [], function (result, subtask) {
+          result[`${subtask.key} (${subtask.fields.status.name})`] = subtask.fields.summary
+        }, {})
 
-        var _table = []
+        var output = {
+          Parent: issue.fields.parent && `${issue.fields.parent.key} - ${issue.fields.parent.fields.summary}`,
+          Summary: issue.fields.summary,
+          Type: issue.fields.issuetype.name,
+          Description: issue.fields.description.replace(/[\n\r\t]/g,' '),
+          Summary: issue.fields.summary,
+          Status: issue.fields.status.name,
+          Creator: issue.fields.creator.displayName,
+          Assignee: issue.fields.assignee.displayName,
+          Subtasks: issue.fields.subtasks && subtasks
+        }
+
+        this.log(yaml.dump(pruneEmptyValues(output)))
 
         // _table.push(['Project', issue.fields.project.name])
-        if (issue.fields.parent) {
-          _table.push(['Parent', `${issue.fields.parent.key} - ${issue.fields.parent.fields.summary}`])
-        }
-        _table.push(['Summary', issue.fields.summary])
-        if (issue.fields.description) {
-          _table.push(['Description', issue.fields.description.replace(/[\n\r\t]/g,' ')])
-        }
-        _table.push(['Status', issue.fields.status.name])
-        _table.push(['Creator', issue.fields.creator.displayName])
-        _table.push(['Assignee', issue.fields.assignee.displayName])
-        if (issue.fields.subtasks && issue.fields.subtasks.length) {
-          // _table.push(['Subtasks', issue.fields.subtasks])
-        }
-        _table.push(['Type', issue.fields.issuetype.name])
-
-        this.log(table(
-          _table,
-          tableConfig
-        ))
         callback()
       })
     })
@@ -55,4 +52,12 @@ var tableConfig = {
     0: { width: 16, paddingLeft: 0 },
     1: { width: 100, wrapWord: true }
   }
+}
+
+function pruneEmptyValues (object) {
+  return transform(object, function(result, value, key) {
+    if (value) {
+      result[key] = value
+    }
+  }, {})
 }

@@ -10,7 +10,7 @@ module.exports = function (vorpal) {
     .description('List my issues.')
     .action(function (args, callback) {
       var username = vorpal.localStorage.getItem('username')
-      var openOnly = false
+      var openOnly = true
 
       var jiraConnection = jira(vorpal)
       jiraConnection.getUsersIssues(username, openOnly, (err, response) => {

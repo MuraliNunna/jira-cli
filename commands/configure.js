@@ -3,7 +3,6 @@ module.exports = function (vorpal) {
     .command('configure')
     .description('Set username, password, host, etc.')
     .action(function (args, callback) {
-      const self = this
       this.prompt([
         {
           type: 'input',
