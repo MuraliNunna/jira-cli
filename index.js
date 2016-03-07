@@ -8,9 +8,12 @@ const vorpal = require('vorpal')()
 
 require('./commands/comment')(vorpal)
 require('./commands/configure')(vorpal)
+require('./commands/get-project')(vorpal)
+require('./commands/find-rapid-view')(vorpal)
+require('./commands/list-projects')(vorpal)
 require('./commands/mine')(vorpal)
-require('./commands/projects')(vorpal)
 require('./commands/show')(vorpal)
+require('./commands/sprint')(vorpal)
 require('./commands/use')(vorpal)
 
 if (vorpal.localStorage.getItem('showProductivityQuote')) {

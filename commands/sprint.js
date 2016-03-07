@@ -4,21 +4,18 @@ var recentProjects = require('../state/projects')
 
 module.exports = function (vorpal) {
   vorpal
-    .command('projects')
-    .description('List projects.')
+    .command('sprint')
+    .description('Get most recent sprint.')
     .action(function (args, callback) {
+      // not working...
+      var rapidViewId = vorpal.localStorage.getItem('rapidViewId')
       var jiraConnection = jira(vorpal)
-      jiraConnection.listProjects((err, projects) => {
+      jiraConnection.getLastSprintForRapidView(parseInt(rapidViewId), (err, sprint) => {
         if (err) {
           callback(err)
           return
         }
-        this.log(columns(projects.map((project)=> {
-          return `${project.name} (${project.key.blue})`
-        })))
-        recentProjects.set(projects.map((project) => {
-          return project.key
-        }))
+        this.log(sprint)
         callback()
       })
     })
