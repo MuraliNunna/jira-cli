@@ -35,7 +35,7 @@ module.exports = function (vorpal) {
           Summary: issue.fields.summary,
           Status: issue.fields.status.name,
           Creator: issue.fields.creator.displayName,
-          Assignee: issue.fields.assignee.displayName,
+          Assignee: issue.fields.assignee && issue.fields.assignee.displayName,
           Subtasks: issue.fields.subtasks && issue.fields.subtasks.length && subtasks
         }
 
