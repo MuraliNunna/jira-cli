@@ -30,11 +30,6 @@ module.exports = function (vorpal) {
         },
         {
           type: 'input',
-          name: 'rapidViewId',
-          message: 'Rapid view id? (see /secure/RapidBoard.jspa?rapidView=[id]) '
-        },
-        {
-          type: 'input',
           name: 'issueType',
           message: 'Issue type? (default: New Feature) ',
           default: 'New Feature'
@@ -54,7 +49,6 @@ module.exports = function (vorpal) {
         vorpal.localStorage.setItem('host', input.host)
         vorpal.localStorage.setItem('port', input.port)
         vorpal.localStorage.setItem('projectKey', input.project)
-        vorpal.localStorage.setItem('rapidViewId', input.rapidViewId)
         vorpal.localStorage.setItem('issueType', input.issueType)
         vorpal.localStorage.setItem('username', input.username)
         vorpal.localStorage.setItem('password', input.password)

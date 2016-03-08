@@ -5,7 +5,7 @@ var getBorderCharacters = require('table').getBorderCharacters
 
 module.exports = function (vorpal) {
   vorpal
-    .command('use <project key>')
+    .command('use project <project key>')
     .description('Use a project.')
     .autocomplete({
       data: function () {

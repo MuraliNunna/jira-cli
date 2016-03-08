@@ -4,6 +4,7 @@
   "description": "Immersive command line interface for Jira",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.9.1",
     "cli-columns": "^1.0.6",
     "colors": "^1.1.2",
     "jira": "^0.9.2",
