@@ -3,7 +3,7 @@ var recentProjects = require('../state/projects')
 
 module.exports = function (vorpal) {
   vorpal
-    .command('use board <rapid view name...>')
+    .command('use board <board name...>')
     .description('Use a board.')
     .autocomplete({
       data: function (input, callback) {
@@ -22,7 +22,7 @@ module.exports = function (vorpal) {
       }
     })
     .action(function (args, callback) {
-      const rapidViewName = args['rapid view name'].join(' ')
+      const rapidViewName = args['board name'].join(' ')
       const views = JSON.parse(vorpal.localStorage.getItem('rapidViews')).filter((view) => {
         return view.name === rapidViewName
       })
