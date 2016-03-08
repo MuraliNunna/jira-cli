@@ -23,12 +23,12 @@ require('./commands/show-issue')(vorpal)
 require('./commands/use-project')(vorpal)
 require('./commands/use-board')(vorpal)
 
-vorpal.show()
 
 if (!credentialsSet) {
+  vorpal.show()
   vorpal.execSync('configure')
-}
-
-if (runSingleCommand) {
+} else if (runSingleCommand) {
   vorpal.parse(process.argv)
+} else {
+  vorpal.show()
 }
