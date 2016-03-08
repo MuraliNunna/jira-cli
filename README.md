@@ -23,7 +23,7 @@ jira
   list projects                     List projects.
   mine                              List my issues.
   search <query...>                 Search with query string (jql).
-  show board                        Show board.
+  show board                        Show board. Alias: sprint.
   show issue <issue key>            Show an issue.
   use project <project key>         Use a project.
   use board <rapid view name...>    Use a board.

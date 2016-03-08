@@ -7,7 +7,7 @@ module.exports = function (vorpal) {
   vorpal
     .command('show board')
     .alias('sprint')
-    .description('Show board.')
+    .description('Show board. Alias: sprint.')
     .action(function (args, callback) {
       const boardId = vorpal.localStorage.getItem('rapidViewId')
       if (!boardId) {
@@ -28,7 +28,21 @@ module.exports = function (vorpal) {
           if (!columnIssues.length) {
             return
           }
-          this.log(`  ${chalk.red(column.name)}`)
+
+          const columnEstimate = columnIssues.reduce((previousValue, issue) => {
+            if (issue.typeName === 'Story' &&
+                issue.estimateStatistic &&
+                issue.estimateStatistic.statFieldValue) {
+              return previousValue + issue.estimateStatistic.statFieldValue.value
+            }
+            return previousValue
+          }, 0)
+          var columnEstimateText = ''
+          if (columnEstimate) {
+            columnEstimateText = `(${columnEstimate} points)`
+          }
+
+          this.log(`  ${chalk.red(column.name)} ${columnEstimateText}`)
 
           columnIssues.forEach((issue) => {
             if (issue.parentKey && columnIssues.some((_issue) => {
@@ -36,6 +50,7 @@ module.exports = function (vorpal) {
             })) {
               return
             }
+
             // if (issue.typeName === 'Sub-task') {
             //   console.log(issue.parentKey)
             // }
