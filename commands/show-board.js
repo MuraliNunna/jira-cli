@@ -24,14 +24,14 @@ module.exports = function (vorpal) {
           const columnIssues = response.data.issuesData.issues.filter((issue) => {
             return column.statusIds.indexOf(issue.statusId) > -1
           })
-          if (column.name === 'Accepted' || !columnIssues.length) {
+          if (!columnIssues.length) {
             return
           }
-          this.log(chalk.red(column.name))
+          this.log(`  ${chalk.red(column.name)}`)
 
           columnIssues.forEach((issue) => {
             var assigneeSuffix = issue.assigneeName ? `(${issue.assigneeName})` : ''
-            this.log(`  ${issue.key.blue} - ${issue.summary} ${assigneeSuffix}`)
+            this.log(`    ${issue.key.blue} (${issue.typeName}) - ${issue.summary} ${assigneeSuffix}`)
           })
         })
         callback()

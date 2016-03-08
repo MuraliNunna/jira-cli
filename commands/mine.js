@@ -1,5 +1,6 @@
 var table = require('table').default
 var jira = require('../jira')
+var chalk = require('chalk')
 var recentIssues = require('../state/issues')
 var colorStatus = require('../common/color-status')
 var getBorderCharacters = require('table').getBorderCharacters
@@ -20,7 +21,7 @@ module.exports = function (vorpal) {
         }
         response.issues.reverse()
         this.log(table(response.issues.map((issue)=> {
-          var key = issue.key.blue
+          var key = chalk.blue(issue.key)
           if (issue.fields.status.description.includes('Task')) {
             key = `${key} (task)`
           }
