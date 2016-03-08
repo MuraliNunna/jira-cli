@@ -8,9 +8,13 @@ module.exports = function (vorpal) {
     .autocomplete({
       data: function (input, callback) {
         try {
-          const viewNames = JSON.parse(vorpal.localStorage.getItem('rapidViews') || '[]').map((view) => {
-            return view.name
-          })
+          const viewNames = JSON.parse(vorpal.localStorage.getItem('rapidViews') || '[]')
+            .filter((view) => {
+              return view.name.toLowerCase().indexOf(input.toLowerCase()) === 0
+            })
+            .map((view) => {
+              return view.name
+            })
           callback(viewNames)
         } catch (err) {
           callback([])
@@ -23,7 +27,7 @@ module.exports = function (vorpal) {
         return view.name === rapidViewName
       })
       if (views.length) {
-        this.log(`Using ${views[0].name}`.blue)
+        this.log(`Using ${views[0].name} rapid view`.blue)
         vorpal.localStorage.setItem('rapidViewId', views[0].id)
       }
       callback()
