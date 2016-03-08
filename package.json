@@ -1,6 +1,6 @@
 {
   "name": "aaronshaf-jira-cli",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "Immersive command line interface for Jira",
   "main": "index.js",
   "dependencies": {
