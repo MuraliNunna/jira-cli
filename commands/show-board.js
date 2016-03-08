@@ -6,6 +6,7 @@ var chalk = require('chalk')
 module.exports = function (vorpal) {
   vorpal
     .command('show board')
+    .alias('sprint')
     .description('Show board.')
     .action(function (args, callback) {
       const boardId = vorpal.localStorage.getItem('rapidViewId')
