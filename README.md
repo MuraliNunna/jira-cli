@@ -13,18 +13,20 @@ npm install aaronshaf-jira-cli -g
 ```
 jira
 
-  help [command...]                    Provides help for a given command.
-  exit                                 Exits application.
-  comment <issue key> <comment...>     Comment on an issue.
-  configure                            Set username, password, host, etc.
-  describe project <project key>       Describe a project by project key.
-  list rapid views                     List rapid views.
-  list projects                        List projects.
-  mine                                 List my issues.
-  search <query...>                    Search with query string (jql).
-  show <issue key>                     Show an issue.
-  use project <project key>            Use a project.
-  use rapid view <rapid view name...>  Use a rapid view.
+  help [command...]                 Provides help for a given command.
+  exit                              Exits application.
+  comment <issue key> <comment...>  Comment on an issue.
+  configure                         Set username, password, host, etc.
+  describe project <project key>    Describe a project by project key.
+  list boards                       List boards.
+  list dashboards                   List dashboards.
+  list projects                     List projects.
+  mine                              List my issues.
+  search <query...>                 Search with query string (jql).
+  show board                        Show board.
+  show issue <issue key>            Show an issue.
+  use project <project key>         Use a project.
+  use board <rapid view name...>    Use a board.
 ```
 
 Supports autocomplete. Press tab to complete a command or argument.
