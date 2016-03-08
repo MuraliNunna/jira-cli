@@ -1,11 +1,10 @@
 var jira = require('../jira')
-var table = require('table').default
 var yaml = require('js-yaml')
 var transform = require('lodash/transform')
 
 module.exports = function (vorpal) {
   vorpal
-    .command('show <issue key>')
+    .command('show issue <issue key>')
     .description('Show an issue.')
     .autocomplete({
       data: function () {
@@ -41,17 +40,9 @@ module.exports = function (vorpal) {
 
         this.log(yaml.dump(pruneEmptyValues(output)))
 
-        // _table.push(['Project', issue.fields.project.name])
         callback()
       })
     })
-}
-
-var tableConfig = {
-  columns: {
-    0: { width: 16, paddingLeft: 0 },
-    1: { width: 100, wrapWord: true }
-  }
 }
 
 function pruneEmptyValues (object) {

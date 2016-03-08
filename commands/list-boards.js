@@ -6,12 +6,12 @@ const API_URL = 'rest/greenhopper/latest/rapidviews/list'
 
 module.exports = function (vorpal) {
   vorpal
-    .command('list rapid views')
-    .description('List rapid views.')
+    .command('list boards')
+    .description('List boards.')
     .action(function (args, callback) {
       get(vorpal, API_URL).then((response) => {
         this.log(columns(response.data.views.map((view) => {
-          return view.name
+          return `${view.name} (${view.id})`
         })))
         vorpal.localStorage.setItem('rapidViews', JSON.stringify(response.data.views))
         callback()

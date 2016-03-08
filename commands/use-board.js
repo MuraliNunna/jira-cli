@@ -3,8 +3,8 @@ var recentProjects = require('../state/projects')
 
 module.exports = function (vorpal) {
   vorpal
-    .command('use rapid view <rapid view name...>')
-    .description('Use a rapid view.')
+    .command('use board <rapid view name...>')
+    .description('Use a board.')
     .autocomplete({
       data: function (input, callback) {
         try {
@@ -27,7 +27,7 @@ module.exports = function (vorpal) {
         return view.name === rapidViewName
       })
       if (views.length) {
-        this.log(`Using ${views[0].name} rapid view`.blue)
+        this.log(`Using ${views[0].name}`.blue)
         vorpal.localStorage.setItem('rapidViewId', views[0].id)
       }
       callback()
