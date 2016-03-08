@@ -30,8 +30,24 @@ module.exports = function (vorpal) {
           this.log(`  ${chalk.red(column.name)}`)
 
           columnIssues.forEach((issue) => {
-            var assigneeSuffix = issue.assigneeName ? `(${issue.assigneeName})` : ''
+            if (issue.parentKey && columnIssues.some((_issue) => {
+              return _issue.key === issue.parentKey
+            })) {
+              return
+            }
+            // if (issue.typeName === 'Sub-task') {
+            //   console.log(issue.parentKey)
+            // }
+            const assigneeSuffix = issue.assigneeName ? `(${issue.assigneeName})` : ''
             this.log(`    ${issue.key.blue} (${issue.typeName}) - ${issue.summary} ${assigneeSuffix}`)
+
+            const subtasks = columnIssues.filter((_issue) => {
+              return _issue.parentKey === issue.key
+            })
+            subtasks.forEach((issue) => {
+              const assigneeSuffix = issue.assigneeName ? `(${issue.assigneeName})` : ''
+              this.log(`      ${issue.key.blue} (${issue.typeName}) - ${issue.summary} ${assigneeSuffix}`)
+            })
           })
         })
         callback()
