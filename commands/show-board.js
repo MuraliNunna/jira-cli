@@ -15,9 +15,16 @@ module.exports = function (vorpal) {
         callback()
         return
       }
+
+      const projectkeyId = vorpal.localStorage.getItem('projectKey')
+      if (!projectkeyId) {
+        this.log('No projectkey chosen yet.')
+        callback()
+        return
+      }
       // const API_URL = `rest/api/2/board/${boardId}/data`
       // const API_URL = `rest/greenhopper/1.0/xboard/config.json?returnDefaultBoard=false&rapidViewId=`
-      const API_URL = `/rest/greenhopper/1.0/xboard/work/allData.json?rapidViewId=${boardId}&selectedProjectKey=RD`
+      const API_URL = `/rest/greenhopper/1.0/xboard/work/allData.json?rapidViewId=${boardId}&selectedProjectKey=${projectkeyId}`
       get(vorpal, API_URL).then((response) => {
         const sprintName = response.data.sprintsData.sprints[0].name
         this.log(sprintName)
